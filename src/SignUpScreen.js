@@ -1,18 +1,17 @@
 import React from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input, Button , Text} from 'react-native-elements';
+
 
 const SignUpScreen = ({navigation}) => {
   return (
     <>
-      <Text style={{fontSize: 48}}>SignupScreen</Text>
-      <Button
-          title= 'go to Sign In'
-          onPress= {()=> navigation.navigate('SignIn')}
-      />
+     <Text h3>Sign Up for Application</Text>
+     <Input  label = "Email"/>
+     <Input label='Password' />
           <Button
-              title='go to Main Flow'
-              onPress={() => navigation.navigate('mainFlow')}
-          />
+           title="Sign Up" type="outline" raised />
     </>
   );
 };
