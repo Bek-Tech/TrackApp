@@ -1,8 +1,20 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Button} from 'react-native';
 
-const SignUpScreen = () => {
-  return <Text style={{fontSize: 48}}>SignUpScreen</Text>;
+const SignUpScreen = ({navigation}) => {
+  return (
+    <>
+      <Text style={{fontSize: 48}}>SignupScreen</Text>
+      <Button
+          title= 'go to Sign In'
+          onPress= {()=> navigation.navigate('SignIn')}
+      />
+          <Button
+              title='go to Main Flow'
+              onPress={() => navigation.navigate('mainFlow')}
+          />
+    </>
+  );
 };
 
 const styles = StyleSheet.create ({});

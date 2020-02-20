@@ -1,5 +1,5 @@
 import React from 'react';
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'; // back and forward navigator
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import AccountScreen from './src/AccountScreen';
@@ -15,7 +15,7 @@ const switchNavigator = createSwitchNavigator ({
     SignIn: SignInScreen,
   }),
   mainFlow: createBottomTabNavigator ({
-    trackListFlow: createBottomTabNavigator ({
+    trackListFlow: createStackNavigator ({
       TrackList: TrackListScreen,
       TrackDetails: TrackDetailsScreen,
     }),
