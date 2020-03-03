@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Input, Button, Text} from 'react-native-elements';
+import { Input, Button, Text } from 'react-native-elements';
 import Spacer from './components/Spacer';
+import { Context as AuthContext } from './context/AuthContext';
 
-const SignUpScreen = ({navigation}) => {
-  const [Email, setEmail] = useState ('');
-  const [Password, setPassword] = useState ('');
+const SignUpScreen = ({ navigation }) => {
+  const { state, signup } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
@@ -15,7 +17,7 @@ const SignUpScreen = ({navigation}) => {
       </Spacer>
       <Input
         label="Email"
-        value={Email}
+        value={email}
         onChangeText={setEmail}
         autoCapitalize="none" // birinchi harifni kottalashtirib quyishini uchiradi
         autoCorrect={false} // t9 ni  uchiradi
@@ -24,13 +26,20 @@ const SignUpScreen = ({navigation}) => {
       <Input
         secureTextEntry // youzuvni nuqtacha qilib kurstadi
         label="Password"
-        value={Password}
+        value={password}
         onChangeText={setPassword}
         autoCapitalize="none" // birinchi harifni kottalashtirib quyishini uchiradi
         autoCorrect={false} // t9 ni  uchiradi
       />
       <Spacer>
-        <Button title="Sign Up" type="outline" raised />
+        <Button
+          title="Sign Up"
+          type="outline"
+          raised
+          onPress={() => {
+            signup({ email, password })
+          }}
+        />
       </Spacer>
     </View>
   );
@@ -42,7 +51,7 @@ SignUpScreen.navigationOptions = () => {
   };
 }; //  bu funksiya teppadegei header ni uchiradi    , buni funksiyaga bog`lamasdan objekt qilsayam buladi
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   container: {
     flex: 1, //  chegarani iloji boricha kottalashtiradi
     justifyContent: 'center', //  chegara kottalashganidan kegin ichidage elementlarni  o`rtaga joylashtiradi
