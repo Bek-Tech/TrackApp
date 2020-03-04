@@ -32,6 +32,7 @@ const SignUpScreen = ({ navigation }) => {
         autoCorrect={false} // t9 ni  uchiradi
       />
       <Spacer>
+        {state.errorMessage ? <Text style={styles.errorStyle}>{state.errorMessage}</Text> : null}
         <Button
           title="Sign Up"
           type="outline"
@@ -57,6 +58,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center', //  chegara kottalashganidan kegin ichidage elementlarni  o`rtaga joylashtiradi
     marginBottom: 200, // without margin keyboard will close signup button while typing procces on input
   },
+  errorStyle: {
+    color: "red",
+    fontSize: 17,
+    marginLeft: 15,
+    marginBottom: 15
+  }
 });
 
 export default SignUpScreen;
