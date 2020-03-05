@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button, Text } from 'react-native-elements';
 import Spacer from './components/Spacer';
 import { Context as AuthContext } from './context/AuthContext';
+import { navigate } from './navigationRef';
 
 const SignUpScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
