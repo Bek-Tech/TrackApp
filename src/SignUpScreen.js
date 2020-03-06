@@ -1,48 +1,32 @@
-import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input, Button, Text } from 'react-native-elements';
+import React, { useContext } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-elements';
 import Spacer from './components/Spacer';
 import { Context as AuthContext } from './context/AuthContext';
-import { navigate } from './navigationRef';
+import AuthForm from './components/AuthForm'
+import NavLink from './components/NavLink'
+
 
 const SignUpScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
 
   return (
+
     <View style={styles.container}>
-      <Spacer>
-        <Text h3>Sign Up for Application</Text>
-      </Spacer>
-      <Input
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none" // birinchi harifni kottalashtirib quyishini uchiradi
-        autoCorrect={false} // t9 ni  uchiradi
+      <AuthForm
+        headerText='Sign Up for Tracker'
+        errorMessage={state.errorMessage}
+        onSubmit={signup}
+        submitButtonText='Sign Up'
       />
-      <Spacer />
-      <Input
-        secureTextEntry // youzuvni nuqtacha qilib kurstadi
-        label="Password"
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize="none" // birinchi harifni kottalashtirib quyishini uchiradi
-        autoCorrect={false} // t9 ni  uchiradi
+      <NavLink
+        text='Already have an account? sign in.'
+        routeName='SignIn'
       />
-      <Spacer>
-        {state.errorMessage ? <Text style={styles.errorStyle}>{state.errorMessage}</Text> : null}
-        <Button
-          title="Sign Up"
-          type="outline"
-          raised
-          onPress={() => {
-            signup({ email, password })
-          }}
-        />
-      </Spacer>
+
+
+
     </View>
   );
 };
@@ -59,12 +43,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center', //  chegara kottalashganidan kegin ichidage elementlarni  o`rtaga joylashtiradi
     marginBottom: 200, // without margin keyboard will close signup button while typing procces on input
   },
-  errorStyle: {
-    color: "red",
-    fontSize: 17,
-    marginLeft: 15,
-    marginBottom: 15
-  }
+
+
+
 });
 
 export default SignUpScreen;
