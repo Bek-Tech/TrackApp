@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { withNavigation } from 'react-navigation'
+import { withNavigation } from 'react-navigation'  // withNavigation function gives accsess to navigation
 import Spacer from './Spacer'
 
 const NavLink = ({ navigation, text, routeName }) => {

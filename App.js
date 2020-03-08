@@ -9,9 +9,11 @@ import TrackCreateScreen from './src/TrackCreateScreen';
 import TrackDetailsScreen from './src/TrackDetailsScreen';
 import TrackListScreen from './src/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
+import LoadingScreen from './src/LoadingScreen'
 import { setNavigator } from './src/navigationRef'  // importni {} shu bilan qilindi chunki  navigationRef da export default qilinmagan
 
 const switchNavigator = createSwitchNavigator({
+  LoadingScreen: LoadingScreen,
   loginFlow: createStackNavigator({
     SignUp: SignUpScreen,
     SignIn: SignInScreen,
