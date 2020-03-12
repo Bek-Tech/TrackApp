@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import MapView from "react-native-maps"
+import MapView, { Polyline, Circle } from "react-native-maps"
 import { Context as LocationContext } from "../context/LocationContext"
 
 const Maps = () => {
@@ -20,8 +20,14 @@ const Maps = () => {
             latitudeDelta: 0.01,
             longitudeDelta: 0.01
         }}
-
-        style={styles.map} />
+        style={styles.map} >
+        <Circle
+            center={currentLocation.coords}
+            radius={15}
+            strokeColor='blue'
+            fillColor="#4FB6BB"
+        />
+    </MapView>
 
 };
 
