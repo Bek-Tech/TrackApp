@@ -1,26 +1,30 @@
 import './_mockLocation'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import { watchPositionAsync, Accuracy } from 'expo-location'
 import * as Permissions from 'expo-permissions';
 import { SafeAreaView } from 'react-navigation' // sets auto margin on sides regarding  size  of display and  gadgets model 
 import Maps from './components/Maps'
+import { Context as LocationContext } from "./context/LocationContext"
 
 
 const TrackCreateScreen = () => {
+  const { addLocation } = useContext(LocationContext)
   const [err, setErr] = useState(null);
 
   const startWatching = async () => {
     const permission = await Permissions.askAsync(Permissions.LOCATION)
 
     if (permission.status === 'granted') {
+      setErr(null)
       await watchPositionAsync({
-        accuracy: Accuracy.BestForNavigation,
+        accuracy: Accuracy.BestForNavigation, // high battery usage 
         timeInterval: 1000,
         distanceInterval: 10
       }, (location) => {
-        // console.log(location)  // location comes from mockLocation
+
+        addLocation(location)
       })
     } else {
       setErr('error')
