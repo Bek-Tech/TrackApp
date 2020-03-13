@@ -13,7 +13,7 @@ const locationReducer = (state, action) => {
 const recording = dispatch => () => { }
 const stopRecording = dispatch => () => { }
 const addLocation = dispatch => (location) => {
-
+    console.log('watching')
     dispatch({ type: "add_user_location", payload: location })
 
 }

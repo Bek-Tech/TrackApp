@@ -2,17 +2,20 @@ import './_mockLocation'
 import React, { useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
-import { SafeAreaView } from 'react-navigation' // sets auto margin on sides regarding  size  of display and  gadgets model 
+import { SafeAreaView, withNavigationFocus } from 'react-navigation' //  SafeAreaView - sets auto margin on sides regarding  size  of display  . withNavigationFocus - gives "isFocused" prop which is returns boolean when user in this screen gives true and must be exported with screen
+
 import Maps from './components/Maps'
 import { Context as LocationContext } from "./context/LocationContext"
 import useLocation from './hooks/useLocation'
 
 
-const TrackCreateScreen = () => {
+const TrackCreateScreen = ({ isFocused }) => {
+  // isLocation  = boolean
+
   const { addLocation } = useContext(LocationContext)
 
 
-  const [err] = useLocation(addLocation)  // (location)=>{addLocation(location)}
+  const [err] = useLocation(isFocused, addLocation)  // (location)=>{addLocation(location)}
 
 
 
@@ -28,4 +31,4 @@ const TrackCreateScreen = () => {
 
 const styles = StyleSheet.create({});
 
-export default TrackCreateScreen;
+export default withNavigationFocus(TrackCreateScreen);
