@@ -5,15 +5,22 @@ const locationReducer = (state, action) => {
     switch (action.type) {
         case "add_user_location":
             return { ...state, currentLocation: action.payload }
+        case "start_recording":
+            return { ...state, recording: true }
+        case "stop_recording":
+            return { ...state, recording: false }
         default:
             return state
     }
 }
 
-const recording = dispatch => () => { }
-const stopRecording = dispatch => () => { }
+const startRecording = dispatch => () => {
+    dispatch({ type: "start_recording" })
+}
+const stopRecording = dispatch => () => {
+    dispatch({ type: "stop_recording" })
+}
 const addLocation = dispatch => (location) => {
-    console.log('watching')
     dispatch({ type: "add_user_location", payload: location })
 
 }
@@ -26,6 +33,6 @@ const addLocation = dispatch => (location) => {
 
 export const { Provider, Context } = createDataContext(
     locationReducer,
-    { recording, stopRecording, addLocation },
+    { startRecording, stopRecording, addLocation },
     { recording: false, locations: [], currentLocation: null }
 )
