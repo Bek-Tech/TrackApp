@@ -9,19 +9,31 @@ const locationReducer = (state, action) => {
             return { ...state, recording: true }
         case "stop_recording":
             return { ...state, recording: false }
+        case "record_location":
+            // return new array without mutation original one
+            return { ...state, locations: [...state.locations, action.payload] }
+        case "change_name":
+            return { ...state, name: action.payload }
         default:
             return state
     }
 }
 
 const startRecording = dispatch => () => {
+    console.log("start record")
     dispatch({ type: "start_recording" })
 }
 const stopRecording = dispatch => () => {
     dispatch({ type: "stop_recording" })
 }
-const addLocation = dispatch => (location) => {
+const changeName = dispatch => (name) => {
+    dispatch({ type: "change_name", payload: name })
+}
+const addLocation = dispatch => (location, recording) => {
     dispatch({ type: "add_user_location", payload: location })
+    if (recording) {
+        dispatch({ type: 'record_location', payload: location })
+    }
 
 }
 
@@ -32,7 +44,8 @@ const addLocation = dispatch => (location) => {
 
 
 export const { Provider, Context } = createDataContext(
+    // {Reducer, action functions , default state}
     locationReducer,
-    { startRecording, stopRecording, addLocation },
-    { recording: false, locations: [], currentLocation: null }
+    { changeName, startRecording, stopRecording, addLocation },
+    { recording: false, locations: [], currentLocation: null, name: "" }
 )

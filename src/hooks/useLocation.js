@@ -29,14 +29,13 @@ export default (shouldStart, callback) => {
 
     useEffect(() => {
         if (shouldStart) {
-            console.log(shouldStart)
             startWatching()
         } else {
             sub.remove()// stop tracking
             setSub(null)
         }
 
-    }, [shouldStart])
+    }, [shouldStart, callback])
 
-    return [err]  // returning an array is convention  for reusable hooks, can be use obj  or not use 
+    return [err]  // returning an array is convention  for reusable hooks
 }
