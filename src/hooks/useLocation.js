@@ -8,33 +8,38 @@ export default (shouldStart, callback) => {
     const [err, setErr] = useState(null);
     const [sub, setSub] = useState(null)
 
-    const startWatching = async () => {
-        const permission = await Permissions.askAsync(Permissions.LOCATION)
 
-        if (permission.status === 'granted') {
-            setErr(null)
-            const subscriber = await watchPositionAsync({
-                accuracy: Accuracy.BestForNavigation, // high battery usage 
-                timeInterval: 1000,
-                distanceInterval: 10
-            },
-                callback
-            )
-            setSub(subscriber)
-        } else {
-            setErr('error')
-        }
-    }
 
 
     useEffect(() => {
+
+        const startWatching = async () => {
+            const permission = await Permissions.askAsync(Permissions.LOCATION)
+
+            if (permission.status === 'granted') {
+                setErr(null)
+                const subscriber = await watchPositionAsync({
+                    accuracy: Accuracy.BestForNavigation, // high battery usage 
+                    timeInterval: 1000,
+                    distanceInterval: 10
+                },
+                    callback
+                )
+                setSub(subscriber)
+            } else {
+                setErr('error')
+            }
+        }
+
+
+
         if (shouldStart) {
             startWatching()
         } else {
             sub.remove()// stop tracking
             setSub(null)
         }
-        // clean up function that solves issue with rerendering startWatching 10 times
+        // clean up function that solves issue with extra rerendering startWatching 
         return () => {
             if (sub) {
                 sub.remove()
