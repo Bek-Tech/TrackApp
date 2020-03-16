@@ -7,7 +7,7 @@ const TrackForm = () => {
 
     const { state: { name, recording, locations }, changeName, startRecording, stopRecording } = useContext(LocationContext)
 
-    // console.log(locations.length)
+    console.log(locations.length)
     return <>
         <Spacer>
             <Input

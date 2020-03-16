@@ -34,6 +34,12 @@ export default (shouldStart, callback) => {
             sub.remove()// stop tracking
             setSub(null)
         }
+        // clean up function that solves issue with rerendering startWatching 10 times
+        return () => {
+            if (sub) {
+                sub.remove()
+            }
+        }
 
     }, [shouldStart, callback])
 
