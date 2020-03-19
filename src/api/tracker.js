@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native'
 
 // 248 
 const instance = axios.create({
-  baseURL: "http://4d383248.ngrok.io"
+  baseURL: "http://fdf5db9c.ngrok.io"
 });
 //  takes  2 functions , first function runs first and second one catches error
 instance.interceptors.request.use(
