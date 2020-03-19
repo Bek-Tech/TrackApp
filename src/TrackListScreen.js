@@ -6,7 +6,6 @@ import { ListItem } from "react-native-elements"
 
 const TrackListScreen = ({ navigation }) => {
   const { state, fetchTrack } = useContext(TrackContext)
-  console.log(state)
   return <>
     <NavigationEvents onWillFocus={fetchTrack} />
     <Text style={{ fontSize: 48 }}> TrackListScreen </Text>
