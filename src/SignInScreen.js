@@ -39,9 +39,9 @@ SignInScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, //  chegarani iloji boricha kottalashtiradi
-    justifyContent: 'center', //  chegara kottalashganidan kegin ichidage elementlarni  o`rtaga joylashtiradi
-    marginBottom: 200, // without margin keyboard will close signup button while typing procces on input
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom: 200,
   },
 })
 

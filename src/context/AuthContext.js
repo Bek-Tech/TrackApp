@@ -48,7 +48,6 @@ const signup = dispatch => async ({ email, password }) => {
     dispatch({ type: 'signin', payload: response.data.token }) // dispatch an action
     navigate('TrackList')  //  navigate to  TrackList  screen
   } catch (err) {
-    console.log(err.message)
     dispatch({ type: "add_error", payload: "something went wrong" })
   }
 };
